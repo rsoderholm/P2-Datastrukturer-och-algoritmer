@@ -1,5 +1,7 @@
 package p2;
 
+import sun.awt.image.ImageWatched;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -36,6 +38,24 @@ public class HashTable {
             }
 
         }
+        return null;
+    }
+
+    public int count() {
+        return 0;
+
+    }
+
+    public void put(Object key, Object value) {
+
+
+    }
+
+    public void remove(Object key) {
+        
+    }
+
+    public LinkedList<Object> getInsertionOrder() {
         return null;
     }
 
