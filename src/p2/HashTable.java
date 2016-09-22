@@ -41,20 +41,43 @@ public class HashTable {
         return null;
     }
 
+    /**
+     * Returns number of elements in the hashtable by calling insertionOrder.count
+     *
+     * @return
+     */
     public int count() {
         return 0;
 
     }
 
+    /**
+     * Adds a new entry to the hashtable if the key is not already in it. Adds 'value' last in the linkedlist
+     * 'insertionOrder'
+     *
+     * @param key
+     * @param value
+     */
     public void put(Object key, Object value) {
 
 
     }
 
+    /**
+     * Removes an entry from the hashtable if the key is found. If the key is found, removes value from the linkedlist
+     * insertionOrder
+     *
+     * @param key
+     */
     public void remove(Object key) {
-        
+
     }
 
+    /**
+     * Returns the linkedlist insertionOrder
+     *
+     * @return
+     */
     public LinkedList<Object> getInsertionOrder() {
         return null;
     }
