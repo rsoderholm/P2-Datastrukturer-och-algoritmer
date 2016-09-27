@@ -1,7 +1,6 @@
 package p2;
 
 
-
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -9,13 +8,14 @@ import java.util.LinkedList;
  * Created by Robin on 2016-09-22.
  */
 public class HashTable {
-    private LinkedList<Object> insertionOrder = new LinkedList<Object>();
+    private LinkedList<Object> insertionOrder = new LinkedList<>();
     private LinkedList<Entry>[] table;
+
 
     public HashTable(int size) {
         table = (LinkedList<Entry>[]) new LinkedList<?>[size];
         for (int i = 0; i < size; i++) {
-            table[i] = new LinkedList<Entry>();
+            table[i] = new LinkedList<>();
         }
 
     }
@@ -47,7 +47,8 @@ public class HashTable {
      * @return
      */
     public int count() {
-        return 0;
+        return insertionOrder.size();
+
 
     }
 
@@ -59,6 +60,12 @@ public class HashTable {
      * @param value
      */
     public void put(Object key, Object value) {
+        if (get(key) == null) {
+            table[hashIndex(key)].addFirst(new Entry(key, value));
+            insertionOrder.addFirst(value);
+
+
+        }
 
 
     }
@@ -70,6 +77,12 @@ public class HashTable {
      * @param key
      */
     public void remove(Object key) {
+        if (get(key) != null) {
+            table[hashIndex(key)].remove(new Entry(key, null));
+            getInsertionOrder(insertionOrder);
+            insertionOrder.removeLast();
+
+        }
 
     }
 
@@ -78,8 +91,9 @@ public class HashTable {
      *
      * @return
      */
-    public LinkedList<Object> getInsertionOrder() {
-        return null;
+    public LinkedList<Object> getInsertionOrder(LinkedList<Object> insertionOrder) {
+
+        return insertionOrder;
     }
 
 
