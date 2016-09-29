@@ -82,6 +82,8 @@ public class HashTable {
             getInsertionOrder(insertionOrder);
             insertionOrder.removeLast();
 
+        } else {
+            System.out.println("The word is not in the dictionary.");
         }
 
     }
