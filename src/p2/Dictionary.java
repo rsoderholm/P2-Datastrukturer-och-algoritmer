@@ -59,7 +59,7 @@ public class Dictionary {
         System.out.println("Which word would you like to translate into english?");
         String inString = scanText();
 
-        String[] term = new String[15];
+
         String[] array = inString.split(" ");
         String word = "";
 

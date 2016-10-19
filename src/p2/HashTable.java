@@ -21,12 +21,22 @@ public class HashTable {
 
     }
 
+    /**
+     * Generates and returns hashindex value
+     * @param key
+     * @return
+     */
     private int hashIndex(Object key) {
         int hashCode = key.hashCode();
         hashCode = hashCode % table.length;
         return (hashCode < 0) ? -hashCode : hashCode;
     }
 
+    /**
+     * Gets value from key
+     * @param key
+     * @return
+     */
     public Object get(Object key) {
         int hashIndex = hashIndex(key);
         LinkedList<Entry> entries = table[hashIndex];
