@@ -10,6 +10,7 @@ import java.util.LinkedList;
 public class HashTable {
     private LinkedList<Object> insertionOrder = new LinkedList<>();
     private LinkedList<Entry>[] table;
+    private Object key, value;
 
 
     public HashTable(int size) {
@@ -71,21 +72,24 @@ public class HashTable {
     }
 
     /**
-     * Removes an entry from the hashtable if the key is found. If the key is found, removes value from the linkedlist
-     * insertionOrder
+     * First I create a linkedlist and an iterator.
+     * Removes the key if entr has the same  value as key.
      *
      * @param key
      */
     public void remove(Object key) {
-        if (get(key) != null) {
-            table[hashIndex(key)].remove(new Entry(key, null));
-            getInsertionOrder(insertionOrder);
-            insertionOrder.removeLast();
+        int hashIndex = hashIndex(key);
 
-        } else {
-            System.out.println("The word is not in the dictionary.");
+        LinkedList<Entry> entry = table[hashIndex];
+        Iterator<Entry> iterator = entry.listIterator();
+
+        while (iterator.hasNext()) {
+            Entry entr = iterator.next();
+            if (entr.equals(key)) {
+                insertionOrder.remove(entr.getValue());
+                iterator.remove();
+            }
         }
-
     }
 
     /**
@@ -93,7 +97,7 @@ public class HashTable {
      *
      * @return
      */
-    public LinkedList<Object> getInsertionOrder(LinkedList<Object> insertionOrder) {
+    public LinkedList<Object> getInsertionOrder() {
 
         return insertionOrder;
     }

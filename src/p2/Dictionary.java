@@ -4,6 +4,8 @@ package p2;
  * Created by Robin on 2016-09-29.
  */
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Dictionary {
@@ -14,18 +16,6 @@ public class Dictionary {
     HashTable hashtable = new HashTable(15);
     private Object key;
 
-    public static void main(String[] args) {
-
-        Dictionary dictionary = new Dictionary();
-        HashTable table = new HashTable(15);
-        dictionary.hashtable.put("hej", "hello");
-        dictionary.hashtable.put("nej", "no");
-        dictionary.hashtable.put("senare", "later");
-        dictionary.hashtable.put("idag", "today");
-        dictionary.hashtable.put("igår", "yesterday");
-
-        dictionary.dictionaryMenu();
-    }
 
     public String scanText() {
         scantext = scanner.nextLine();
@@ -36,8 +26,8 @@ public class Dictionary {
         System.out.println("1. Translate word");
         System.out.println("2. Add word");
         System.out.println("3. Remove word ");
-        System.out.println("4. Exit program");
-        System.out.println("5. Print dictionary");
+        System.out.println("4. Print dictionary");
+        System.out.println("5. Exit program");
         System.out.println("Select: ");
         switch (scanText()) {
             case "1":
@@ -53,7 +43,7 @@ public class Dictionary {
                 dictionaryMenu();
                 break;
             case "4":
-                System.exit(0);
+                printDictionary();
                 dictionaryMenu();
                 break;
 
@@ -69,13 +59,14 @@ public class Dictionary {
         System.out.println("Which word would you like to translate into english?");
         String inString = scanText();
 
-        String[] ord = new String[15];
+        String[] term = new String[15];
         String[] array = inString.split(" ");
         String word = "";
 
-        for (String kk : array) {
-            word += (hashtable.get(kk) + " ");
+        for (String s : array) {
+            word += (hashtable.get(s) + " ");
         }
+
 
         System.out.println("The english translation for the word is: ");
         System.out.println(word);
@@ -83,20 +74,41 @@ public class Dictionary {
 
     public void addWord() {
         System.out.println("Type the swedish word.");
-        String svenska = scanText();
+        String swedish = scanText();
         System.out.println("Type the english word.");
-        String engelska = scanText();
-        hashtable.put(svenska, engelska);
+        String english = scanText();
+        hashtable.put(swedish, english);
     }
 
     public void removeWord() {
         System.out.println("Type the swedish word that you would like to remove from the dictionary.");
         String removeEntry = scanText();
-        hashtable.remove(removeEntry);
+        key = removeEntry;
+        hashtable.remove(key);
         System.out.println("The word has been removed.");
     }
 
     public void printDictionary() {
-        System.out.println("The words contained in this dictionary is: " + "\n" + hashtable);
+        System.out.println("Words in this dictionary are: ");
+        LinkedList<Object> entrySet = hashtable.getInsertionOrder();
+        Iterator<Object> iter = entrySet.iterator();
+        while (iter.hasNext()) {
+            System.out.println(iter.next());
+
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Dictionary dictionary = new Dictionary();
+        HashTable table = new HashTable(15);
+        dictionary.hashtable.put("hej", "hello");
+        dictionary.hashtable.put("tack", "thanks");
+        dictionary.hashtable.put("nu", "now");
+        dictionary.hashtable.put("imorgon", "tomorrow");
+        dictionary.hashtable.put("te", "tea");
+        dictionary.hashtable.put("kaffe", "coffee");
+
+        dictionary.dictionaryMenu();
     }
 }
